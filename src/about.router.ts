@@ -20,4 +20,3 @@ export const createAbout = (prefix: string, server: Server) => {
     server.get('/about', sendAbout);
     server.get(`${prefix}/about`, sendAbout);
 };
-79884914044

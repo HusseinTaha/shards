@@ -1,6 +1,6 @@
 import util from 'util';
 import { ShardsRule, WhitelistingMatching } from './src/common/shards-rule.type';
-const bunyan = require('bunyan'); 
+const bunyan = require('bunyan');
 const pkg = require('./package.json');
 
 const parseLogLevel = (envValue?: string) => {
@@ -34,20 +34,20 @@ const shardRules: Record<string, ShardsRule> = {
     whitelist: {
       GET: {
         method: WhitelistingMatching.URL_REGEX,
-        matchSettings: [{'/api/v1/users/': 'jeko'}]
+        matchSettings: [{ '/api/v1/users/': 'jeko' }]
       }
     }
   }
 };
 
 export const config = {
-  name: 'routing-worker',
+  name: 'shards',
   logLevel: parseLogLevel(process.env.LOG_LEVEL),
   http: {
-    host: process.env.HOST || '0.0.0.0',
+    host: process.env.HOST || 'localhost',
     port: process.env.hasOwnProperty('PORT')
       ? parseInt(process.env.PORT!, 10)
-      : 8000,
+      : 8978,
     prefix: `/${pkg.api}`
   },
   shardRules
